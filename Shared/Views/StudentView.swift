@@ -14,19 +14,42 @@ struct StudentView: View {
     @State private var addScore = 0
     
     var body: some View {
-        LineChart(vals: student.scoresArray)
-            .padding()
-        
-            .toolbar {
-                ToolbarItem {
-                    Button("Add Score") {
-                        showingAddScore = true
+        VStack {
+            ScrollView(.horizontal) {
+                HStack {
+                    VStack(alignment: .center) {
+                        Text("Last Tested")
+                            .font(.caption)
+                        Text(student.timeSinceLastAssessment)
+                            .font(.headline)
+      
+                    }
+                    .padding()
+                    .background(.white)
+                    .cornerRadius(8)
+                    .shadow(radius: 4)
+                }
+                .padding()
+            }
+            .padding(.bottom)
+            
+
+            LineChart(vals: student.scoresArray)
+                .padding()
+            
+                .toolbar {
+                    ToolbarItem {
+                        Button("Add Score") {
+                            showingAddScore = true
+                        }
                     }
                 }
-            }
-            .sheet(isPresented: $showingAddScore) {
-                AddScoreView(student: student)
-            }
+                .sheet(isPresented: $showingAddScore) {
+                    AddScoreView(student: student)
+                }
+        }
+        .navigationTitle(student.fullName)
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 

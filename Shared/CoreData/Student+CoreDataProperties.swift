@@ -31,7 +31,27 @@ extension Student {
             $0.wrappedDate < $1.wrappedDate
         }
     }
-
+    
+    var recentTestDate: Date? {
+        return scoresArray.last?.date
+    }
+    
+    var timeSinceLastAssessment: String {
+        if let assessmentDate = recentTestDate {
+            let cal = Calendar.current
+            let today = cal.startOfDay(for: Date())
+            let previousAssessment = cal.startOfDay(for: assessmentDate)
+            let diff = cal.dateComponents([.day], from: previousAssessment, to: today)
+            
+            if (diff.day! == 0) {
+                return "Today 🎉"
+            }
+            
+            return diff.day! > 1 ? "\(diff.day!) days ago" : "1 day ago"
+        } else {
+            return "No Test Scores"
+        }
+    }
 }
 
 // MARK: Generated accessors for scores

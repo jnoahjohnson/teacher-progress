@@ -78,6 +78,7 @@ import Introspect
             if let score = Int16(studentScore.score) {
                 let newTestScore = TestScore(context: self.dataController.context)
                 newTestScore.score = score
+                newTestScore.date = Date()
                 studentScore.student.addToScores(newTestScore)
             }
         }
@@ -178,27 +179,25 @@ struct AddTestStudent: View {
     }
     
     var body: some View {
-        Text(current.student.fullName)
-            .font(.headline)
-        
-        Text("Score: \(current.score)")
-        
-        Form {
+        VStack(alignment: .leading) {
+            Text(current.student.fullName)
+                .font(.headline)
             TextField(
                 "Score",
                 text: $current.score
             )
+            .shadow(radius: 4)
             .introspectTextField { textField in
                 textField.addTarget(
                     self.textFieldObserver,
                     action: #selector(TextFieldObserver.textFieldDidBeginEditing),
-                    for: .valueChanged
+                    for: .editingDidBegin
                 )
             }
             .keyboardType(.numberPad)
-            
         }
     }
+    
 }
 
 

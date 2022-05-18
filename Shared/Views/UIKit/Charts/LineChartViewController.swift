@@ -23,9 +23,11 @@ class LineChartViewController: ChartBaseViewController {
     
     var chartView: LineChartView!
     var chartData: [ChartDataEntry]
+    var referenceTimeInterval: TimeInterval = 0
     
-    init(withData data: [ChartDataEntry]) {
+    init(withData data: [ChartDataEntry], referenceTimeInterval: TimeInterval) {
         self.chartData = data
+        self.referenceTimeInterval = referenceTimeInterval
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -81,6 +83,17 @@ class LineChartViewController: ChartBaseViewController {
         xAxis.labelFont = .systemFont(ofSize: 10, weight: .light)
         xAxis.labelPosition = .bottom
         xAxis.drawGridLinesEnabled = false
+        
+        xAxis.labelPosition = .bottom
+        
+        let xValuesFormatter = DateFormatter()
+            xValuesFormatter.dateFormat = "MM/dd"
+        
+        let minTimeInterval = (chartData.map { $0.x }).min() ?? 0
+        print(minTimeInterval)
+        
+        let xValuesNumberFormatter = ChartXAxisFormatter(referenceTimeInterval: 1651979683.7949, dateFormatter: xValuesFormatter)
+            xAxis.valueFormatter = xValuesNumberFormatter
         
         self.chartView.leftAxis.drawGridLinesEnabled = false
         

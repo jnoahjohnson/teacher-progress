@@ -59,13 +59,73 @@ class DataController: ObservableObject {
         for offset in offsets {
             // find this student in our fetch request
             let student = self.students[offset]
-
+            
             // delete it from the context
             self.context.delete(student)
         }
-
+        
         // save the context
         self.saveData()
+    }
+    
+    func seedData() {
+        resetAllRecords(in: "TestScore")
+        resetAllRecords(in: "Student")
+        
+        let today = Date()
+        let day = 86400
+        
+        let student1 = Student(context: context)
+        student1.firstName = "Beckham"
+        student1.lastName = "Johnson"
+        
+        let test11 = TestScore(context: context)
+        test11.date = Date(timeIntervalSince1970: today.timeIntervalSince1970 - Double((day * 10)))
+        test11.score = 25
+        student1.addToScores(test11)
+        
+        let test12 = TestScore(context: context)
+        test12.date = Date(timeIntervalSince1970: today.timeIntervalSince1970 - Double((day * 5)))
+        test12.score = 45
+        student1.addToScores(test12)
+        
+        let student2 = Student(context: context)
+        student2.firstName = "Korin"
+        student2.lastName = "Johnson"
+        
+        let test21 = TestScore(context: context)
+        test21.date = Date(timeIntervalSince1970: today.timeIntervalSince1970 - Double((day * 10)))
+        test21.score = 45
+        student2.addToScores(test21)
+        
+        let test22 = TestScore(context: context)
+        test22.date = Date(timeIntervalSince1970: today.timeIntervalSince1970 - Double((day * 5)))
+        test22.score = 45
+        student2.addToScores(test22)
+        
+        let test23 = TestScore(context: context)
+        test23.date = Date()
+        test23.score = 100
+        student2.addToScores(test23)
+        
+        print(student1.scoresArray, student2.scoresArray)
+        
+        saveData()
+        
+    }
+    
+    func resetAllRecords(in entity : String) {
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        do
+        {
+            try context.execute(deleteRequest)
+            try context.save()
+        }
+        catch
+        {
+            print ("There was an error")
+        }
     }
     
 }

@@ -15,6 +15,9 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 Text("Hello There!")
+                Button("Reset All Data") {
+                    dataController.seedData()
+                }
             }
             
             .sheet(isPresented: $showingAddTest) {
