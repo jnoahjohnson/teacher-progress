@@ -16,6 +16,8 @@
 		8D2290B1280B53A1002B479F /* ScatterPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2290AF280B53A1002B479F /* ScatterPlot.swift */; };
 		8D2290B3280B5D3B002B479F /* ScatterPlotStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D2290B2280B5D3B002B479F /* ScatterPlotStoryboard.storyboard */; };
 		8D2290B4280B5D3B002B479F /* ScatterPlotStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D2290B2280B5D3B002B479F /* ScatterPlotStoryboard.storyboard */; };
+		8D3C169F284585B100A5EE09 /* AddScoresStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3C169E284585B100A5EE09 /* AddScoresStoryboard.storyboard */; };
+		8D3C16A1284585D600A5EE09 /* AddScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C16A0284585D600A5EE09 /* AddScoresViewController.swift */; };
 		8D7822932803B0230077B278 /* ProgressStudents.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D7822912803B0230077B278 /* ProgressStudents.xcdatamodeld */; };
 		8D7822942803B0230077B278 /* ProgressStudents.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D7822912803B0230077B278 /* ProgressStudents.xcdatamodeld */; };
 		8D7822992803B0C50077B278 /* TestScore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7822952803B0C50077B278 /* TestScore+CoreDataClass.swift */; };
@@ -59,6 +61,8 @@
 		8D2290AC280B5155002B479F /* ChartBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBaseViewController.swift; sourceTree = "<group>"; };
 		8D2290AF280B53A1002B479F /* ScatterPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterPlot.swift; sourceTree = "<group>"; };
 		8D2290B2280B5D3B002B479F /* ScatterPlotStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScatterPlotStoryboard.storyboard; sourceTree = "<group>"; };
+		8D3C169E284585B100A5EE09 /* AddScoresStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddScoresStoryboard.storyboard; sourceTree = "<group>"; };
+		8D3C16A0284585D600A5EE09 /* AddScoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScoresViewController.swift; sourceTree = "<group>"; };
 		8D7822922803B0230077B278 /* ProgressStudents.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProgressStudents.xcdatamodel; sourceTree = "<group>"; };
 		8D7822952803B0C50077B278 /* TestScore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestScore+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8D7822962803B0C50077B278 /* TestScore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestScore+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -102,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D3C169D2845859000A5EE09 /* ScoresTable */ = {
+			isa = PBXGroup;
+			children = (
+				8D3C169E284585B100A5EE09 /* AddScoresStoryboard.storyboard */,
+				8D3C16A0284585D600A5EE09 /* AddScoresViewController.swift */,
+			);
+			path = ScoresTable;
+			sourceTree = "<group>";
+		};
 		8DAF79B828307451008D04E3 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +195,7 @@
 		8DF893DF2822152E007A45F0 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				8D3C169D2845859000A5EE09 /* ScoresTable */,
 				8DAF79B828307451008D04E3 /* Charts */,
 				8D2290B2280B5D3B002B479F /* ScatterPlotStoryboard.storyboard */,
 			);
@@ -277,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D3C169F284585B100A5EE09 /* AddScoresStoryboard.storyboard in Resources */,
 				8D2290B3280B5D3B002B479F /* ScatterPlotStoryboard.storyboard in Resources */,
 				8DC0672928039A940095848B /* Assets.xcassets in Resources */,
 			);
@@ -309,6 +324,7 @@
 				8DD2899E2820BF5F007BED49 /* LineChartViewController.swift in Sources */,
 				8D78229B2803B0C50077B278 /* TestScore+CoreDataProperties.swift in Sources */,
 				8DC0673728039C770095848B /* StudentsView.swift in Sources */,
+				8D3C16A1284585D600A5EE09 /* AddScoresViewController.swift in Sources */,
 				8D2290AD280B5155002B479F /* ChartBaseViewController.swift in Sources */,
 				8D7822A82803B5290077B278 /* AddScoreView.swift in Sources */,
 				8DC0673A2803A0690095848B /* StudentView.swift in Sources */,
