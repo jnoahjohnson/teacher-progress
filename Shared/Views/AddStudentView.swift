@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddStudentView: View {
-    @EnvironmentObject var dataController: DataController
+    @ObservedObject var classVM: ClassViewModel
     @Environment(\.dismiss) var dismiss
     
     @State private var firstName = ""
@@ -23,7 +23,7 @@ struct AddStudentView: View {
             
             Section {
                 Button("Save") {
-                    dataController.addStudent(firstName: firstName, lastName: lastName)
+                    classVM.addStudent(firstName: firstName, lastName: lastName)
                     
                     dismiss()
                 }
@@ -33,7 +33,9 @@ struct AddStudentView: View {
 }
 
 struct AddStudentView_Previews: PreviewProvider {
+    static let classVM = ClassViewModel()
+    
     static var previews: some View {
-        AddStudentView()
+        AddStudentView(classVM: classVM)
     }
 }

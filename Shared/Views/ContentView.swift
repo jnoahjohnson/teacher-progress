@@ -10,10 +10,11 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            HomeView()
+            ClassView()
                 .tabItem {
-                    Label("Class", systemImage: "house")
+                    Label("Classroom", systemImage: "house")
                 }
+                .navigationViewStyle(.stack)
             
             StudentsView()
                 .tabItem {
@@ -24,7 +25,10 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    static let envObject = DataController()
+    
     static var previews: some View {
         ContentView()
+            .environmentObject(envObject)
     }
 }

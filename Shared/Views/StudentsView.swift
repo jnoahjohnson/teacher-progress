@@ -12,7 +12,7 @@ import SwiftUI
 //]
 
 struct StudentsView: View {
-    @EnvironmentObject var dataController: DataController
+    @ObservedObject var classVM = ClassViewModel()
     @State private var showingAddStudent = false
     @State private var addScore = 0
     
@@ -20,16 +20,22 @@ struct StudentsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(dataController.students) { student in
+                ForEach(classVM.studentViewModels) { studentViewModel in
                     NavigationLink {
-                        StudentView(student: student)
+                        StudentView(studentViewModel: studentViewModel)
                     } label: {
-                        Text(student.fullName)
+                        VStack(alignment: .leading) {
+                            Text(studentViewModel.student.fullName)
+                                .font(.headline)
+                            
+                            Text("\(studentViewModel.student.lastTestScore): \(studentViewModel.student.timeSinceLastAssessment)")
+                                .font(.caption)
+                            
+                        }
                     }
                 }
-                .onDelete(perform: dataController.deleteStudent)
+                .onDelete(perform: classVM.deleteStudent)
             }
-            
             
             .navigationTitle("Students")
             .toolbar(content: {
@@ -46,14 +52,17 @@ struct StudentsView: View {
                 }
             })
             .sheet(isPresented: $showingAddStudent) {
-                AddStudentView()
+                AddStudentView(classVM: self.classVM)
             }
         }
     }
 }
 
 struct StudentsView_Previews: PreviewProvider {
+    static let envObject = DataController()
+    
     static var previews: some View {
         StudentsView()
+            .environmentObject(envObject)
     }
 }

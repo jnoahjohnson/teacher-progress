@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-import SwiftUICharts
+import Charts
 
 struct StudentView: View {
-    @ObservedObject var student: Student
+    @ObservedObject var studentViewModel: StudentViewModel
     @State private var showingAddScore = false
     @State private var addScore = 0
     
@@ -20,9 +20,9 @@ struct StudentView: View {
                     VStack(alignment: .center) {
                         Text("Last Tested")
                             .font(.caption)
-                        Text(student.timeSinceLastAssessment)
+                        Text(studentViewModel.student.timeSinceLastAssessment)
                             .font(.headline)
-      
+                        
                     }
                     .padding()
                     .background(.white)
@@ -33,29 +33,50 @@ struct StudentView: View {
             }
             .padding(.bottom)
             
-
-            LineChart(vals: student.scoresArray)
-                .padding()
             
-                .toolbar {
-                    ToolbarItem {
-                        Button("Add Score") {
-                            showingAddScore = true
-                        }
+            
+            Chart(studentViewModel.student.scoresArray) { score in
+                LineMark(x: .value("Date", score.wrappedDate), y: .value("Score", score.score))
+                    .foregroundStyle(.indigo)
+                    .symbol(Circle())
+            }
+            .padding()
+            
+            .toolbar {
+                ToolbarItem {
+                    Button("Add Score") {
+                        showingAddScore = true
                     }
                 }
-                .sheet(isPresented: $showingAddScore) {
-                    AddScoreView(student: student)
-                }
+            }
+            .sheet(isPresented: $showingAddScore) {
+                AddScoreView(onSave: { score in
+                    studentViewModel.addScore(score)
+                    showingAddScore = false
+                })
+            }
+            
         }
-        .navigationTitle(student.fullName)
+        .navigationTitle(studentViewModel.student.fullName)
         .navigationBarTitleDisplayMode(.large)
     }
 }
 
 
 //struct StudentView_Previews: PreviewProvider {
+//    static let student: Student = StudentViewModel
+//    
+//    init() {
+//        let newStudent = Student()
+//        
+//        newStudent.firstName = "Noah"
+//        newStudent.lastName = "Johnson"
+//        
+//        self.student = newStudent
+//    }
+//    
 //    static var previews: some View {
-//        StudentView(student: Student(firstName: "Noah", lastName: "Johnson", scores: [TestScore(score: 100)]))
+//        
+//        StudentView(studentViewModel: StudentViewModel(student: student))
 //    }
 //}

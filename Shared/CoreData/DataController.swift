@@ -9,7 +9,10 @@ import CoreData
 import SwiftUI
 
 class DataController: ObservableObject {
+    static let shared = DataController()
+    
     let container = NSPersistentContainer(name: "ProgressStudents")
+    
     @Published var students: [Student] = []
     
     var context: NSManagedObjectContext {
@@ -128,4 +131,12 @@ class DataController: ObservableObject {
         }
     }
     
+    func addScoreToStudent(student: Student, score: Int) {
+        let newScore = TestScore(context: self.context)
+        newScore.score = Int16(score)
+        newScore.date = Date()
+        newScore.student = student
+        
+        self.saveData()
+    }
 }

@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct AddScoreView: View {
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.dismiss) var dismiss
-    var student: Student
+    var onSave: (_ score: Int) -> Void
     
     @State private var score = 0
     
     var body: some View {
         NavigationView {
-            
-            
             Form {
                 Section("Score") {
                     TextField("Score", value: $score, formatter: NumberFormatter())
@@ -26,17 +22,9 @@ struct AddScoreView: View {
                 
                 Section {
                     Button("Save") {
-                        let newScore = TestScore(context: dataController.context)
-                        newScore.score = Int16(score)
-                        newScore.date = Date()
-                        newScore.student = student
-                        
-                        dataController.saveData()
-                        
-                        dismiss()
+                        self.onSave(score)
                     }
                 }
-                
             }
         }
     }

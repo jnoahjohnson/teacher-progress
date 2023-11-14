@@ -36,6 +36,14 @@ extension Student {
         return scoresArray.last?.date
     }
     
+    var lastTestScore: String {
+        if let score = scoresArray.last?.score {
+            return String(score)
+        } else {
+            return "N/A"
+        }
+    }
+    
     var timeSinceLastAssessment: String {
         if let assessmentDate = recentTestDate {
             let cal = Calendar.current

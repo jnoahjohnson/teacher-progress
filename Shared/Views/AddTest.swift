@@ -204,6 +204,6 @@ struct AddTestStudent: View {
 
 //struct AddTest_Previews: PreviewProvider {
 //    static var previews: some View {
-//        AddTest(withStudents: [Student()])
+//        AddTest()
 //    }
 //}
